@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\..\\src\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n  let newTodo = \"\";\r\n  let todos = [];\r\n\r\n  const addTodo = () => {\r\n    if (newTodo != \"\") {\r\n      const newTodoItem = {\r\n        task: newTodo,\r\n        checked: false\r\n      };\r\n      todos = [...todos, newTodoItem];\r\n      console.log(todos);\r\n      newTodo = \"\";\r\n    }\r\n  };\r\n\r\n  const changeChecked = (i, checked) => {\r\n    console.log(i, checked);\r\n    todos[i].checked = checked;\r\n  };\r\n\r\n  const removeTodo = i => {\r\n    todos.splice(i, 1);\r\n    // update variable value to force rerender\r\n    todos = todos;\r\n  };\r\n</script>\r\n\r\n<style>\r\n  main {\r\n    text-align: center;\r\n    padding: 1em;\r\n    max-width: 240px;\r\n    margin: 0 auto;\r\n  }\r\n\r\n  h1 {\r\n    color: #ff3e00;\r\n    text-transform: uppercase;\r\n    font-size: 4em;\r\n    font-weight: 100;\r\n  }\r\n\r\n  @media (min-width: 640px) {\r\n    main {\r\n      max-width: none;\r\n    }\r\n  }\r\n\r\n  .todo-item {\r\n    margin: 12px 0 12px 0;\r\n    font-size: 24px;\r\n  }\r\n\r\n  .remove-btn {\r\n    background: #ff3e00;\r\n    color: white;\r\n    border: none;\r\n    padding: 2px 12px 2px 12px;\r\n  }\r\n</style>\r\n\r\n<main>\r\n  <h1>Svelte Todo</h1>\r\n  <div>\r\n    <input type=\"text\" placeholder=\"Add Todo Item\" bind:value={newTodo} />\r\n    <button on:click={addTodo}>Add</button>\r\n  </div>\r\n  <div>\r\n    {#each todos as { task, checked }, i}\r\n      <div class=\"todo-item\">\r\n        <span>{i}: {task}</span>\r\n        <input\r\n          type=\"checkbox\"\r\n          {checked}\r\n          on:change={() => changeChecked(i, !checked)} />\r\n        <button class=\"remove-btn\" on:click={() => removeTodo(i)}>x</button>\r\n      </div>\r\n    {/each}\r\n  </div>\r\n</main>\r\n"
+  ],
+  "names": [],
+  "mappings": "AA6BE,IAAI,cAAC,CAAC,AACJ,UAAU,CAAE,MAAM,CAClB,OAAO,CAAE,GAAG,CACZ,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,CAAC,CAAC,IAAI,AAChB,CAAC,AAED,EAAE,cAAC,CAAC,AACF,KAAK,CAAE,OAAO,CACd,cAAc,CAAE,SAAS,CACzB,SAAS,CAAE,GAAG,CACd,WAAW,CAAE,GAAG,AAClB,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AACzB,IAAI,cAAC,CAAC,AACJ,SAAS,CAAE,IAAI,AACjB,CAAC,AACH,CAAC,AAED,UAAU,cAAC,CAAC,AACV,MAAM,CAAE,IAAI,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC,CACrB,SAAS,CAAE,IAAI,AACjB,CAAC,AAED,WAAW,cAAC,CAAC,AACX,UAAU,CAAE,OAAO,CACnB,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,GAAG,CAAC,IAAI,CAAC,GAAG,CAAC,IAAI,AAC5B,CAAC"
+}
